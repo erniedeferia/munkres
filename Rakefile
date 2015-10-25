@@ -11,6 +11,7 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = "A Ruby implementation of the Hungarian Algorithm"
   s.description = "A ruby implementation of the kuhn-munkres or 'hungarian' algorithm for bipartite matching."
+  s.license = "MIT"
   s.rubyforge_project = "munkres"
   s.test_files = ['test/munkres_test.rb']
   s.files = %w[
