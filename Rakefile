@@ -16,7 +16,7 @@ spec = Gem::Specification.new do |s|
   s.files = %w[
 lib/munkres.rb
 test/munkres_test.rb
-README.txt
+README.rdoc
 Rakefile
 History.txt
 ]
