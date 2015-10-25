@@ -1,7 +1,7 @@
 class Munkres
   MODE_MINIMIZE_COST = 1
   MODE_MAXIMIZE_UTIL = 2
-  
+
   def initialize(matrix=[], mode=MODE_MINIMIZE_COST)
     @matrix = matrix
     @mode = mode
@@ -11,43 +11,34 @@ class Munkres
     @covered_rows = []
     @starred_zeros = []
     @primed_zeros = []
-    
-    class << @matrix
-      
-
-      def row(index)
-        self[index]
-      end
-
-      def column(index)
-        self.collect do |row|
-          row[index]
-        end
-      end
-
-      def columns
-        result = []
-        self.first.each_index do |i|
-          result << self.column(i)
-        end
-        result
-      end
-      
-      def each_column_index &block
-        column_indices.each &block
-      end
-      
-      def column_indices
-        @column_indices ||= (0...self.first.size).to_a
-      end
-      
-      def row_indices
-        @row_indices ||= (0...self.size).to_a
-      end
-    end
-    
   end
-  
+
+  def matrix_row(index)
+    matrix[index]
+  end
+
+  def matrix_column(index)
+    matrix.collect do |row|
+      row[index]
+    end
+  end
+
+  def matrix_columns
+    result = []
+    matrix.first.each_index do |i|
+      result << matrix.column(i)
+    end
+    result
+  end
+
+  def matrix_column_indices
+    @matrix_column_indices ||= (0...matrix.first.size).to_a
+  end
+
+  def matrix_row_indices
+    @matrix_row_indices ||= (0...matrix.size).to_a
+  end
+
   def find_pairings
     create_zero_in_rows
     star_zeros
@@ -83,7 +74,7 @@ class Munkres
   
   def print_col_row
     print " "
-    @matrix.column_indices.each do |col_index|
+    matrix_column_indices.each do |col_index|
       print "|" if @covered_columns.include? col_index
       print "\t"
     end
@@ -104,7 +95,7 @@ class Munkres
   end
   
   def star_zeros 
-    unstarred_columns = @matrix.column_indices
+    unstarred_columns = matrix_column_indices
     
     @matrix.each_with_index do |row, row_index|
       star = star_in_row?(row_index)
@@ -191,7 +182,7 @@ class Munkres
   end
   
   def done?
-    @matrix.column_indices.size == covered_columns.size
+    matrix_column_indices.size == covered_columns.size
   end
   
   def min_or_zero(collection)
@@ -212,11 +203,11 @@ class Munkres
   end
   
   def uncovered_rows
-    @matrix.row_indices - @covered_rows 
+    matrix_row_indices - @covered_rows
   end
   
   def uncovered_columns
-    @matrix.column_indices - @covered_columns
+    matrix_column_indices - @covered_columns
   end
   
   #step 4

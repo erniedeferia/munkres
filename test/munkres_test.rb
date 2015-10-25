@@ -56,11 +56,11 @@ context "A Munkres solving instance" do
   end
   
   specify "should be able to retrieve any row of the matrix" do
-    @m.matrix.row(2).should == [3,6,9]
+    @m.matrix_row(2).should == [3,6,9]
   end
   
   specify "should be able to retrieve any column of the matrix" do
-    @m.matrix.column(1).should == [2,4,6]
+    @m.matrix_column(1).should == [2,4,6]
   end
   
   specify "should be able to find the min value of any collection" do
