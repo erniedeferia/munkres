@@ -2,7 +2,7 @@ require 'rubygems'
 
 spec = Gem::Specification.new do |s|
   s.name = "munkres"
-  s.version = "0.2.0"
+  s.version = "0.2.1"
   s.author = "Paul Damer and Jim Wood"
   s.email = 'pdamer@gmail.com'
   s.homepage = "http://github.com/pdamer/munkres"
